@@ -382,6 +382,7 @@
 #define USE_GPS_NMEA
 #define USE_GPS_UBLOX
 #define USE_GPS_RESCUE
+#define USE_FAILSAFE_CONTINUE_FLYING
 #endif // USE_GPS
 
 

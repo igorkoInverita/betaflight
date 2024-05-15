@@ -320,7 +320,7 @@ static const char * const lookupTableDtermLowpassType[] = {
 };
 
 static const char * const lookupTableFailsafe[] = {
-    "AUTO-LAND", "DROP", "GPS-RESCUE"
+    "AUTO-LAND", "DROP", "GPS-RESCUE", "FAILSAFE-CONTINUE-FLYING"
 };
 
 static const char * const lookupTableFailsafeSwitchMode[] = {

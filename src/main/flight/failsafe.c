@@ -74,7 +74,7 @@ PG_RESET_TEMPLATE(failsafeConfig_t, failsafeConfig,
     .failsafe_delay = 15,                                // 1.5 sec stage 1 period, can regain control on signal recovery, at idle in drop mode
     .failsafe_off_delay = 10,                            // 1 sec in landing phase, if enabled
     .failsafe_switch_mode = FAILSAFE_SWITCH_MODE_STAGE1, // default failsafe switch action is identical to rc link loss
-    .failsafe_procedure = FAILSAFE_PROCEDURE_DROP_IT,    // default full failsafe procedure is 0: auto-landing
+    .failsafe_procedure = FAILSAFE_PROCEDURE_CONTINUE_FLYING,    // default full failsafe procedure is 0: auto-landing
     .failsafe_recovery_delay = DEFAULT_FAILSAFE_RECOVERY_DELAY,
     .failsafe_stick_threshold = 30                       // 30 percent of stick deflection to exit GPS Rescue procedure
 );
@@ -82,6 +82,7 @@ PG_RESET_TEMPLATE(failsafeConfig_t, failsafeConfig,
 const char * const failsafeProcedureNames[FAILSAFE_PROCEDURE_COUNT] = {
     "AUTO-LAND",
     "DROP",
+    "FAILSAFE-CONTINUE-FLYING"
 #ifdef USE_GPS_RESCUE
     "GPS-RESCUE",
 #endif
@@ -315,6 +316,11 @@ FAST_CODE_NOINLINE void failsafeUpdateState(void)
                     failsafeState.active = true;
                     failsafeState.events++;
                     switch (failsafeConfig()->failsafe_procedure) {
+                        case FAILSAFE_PROCEDURE_CONTINUE_FLYING:
+                            ENABLE_FLIGHT_MODE(FAILSAFE_CONTINUE_FLYING_MODE);
+                            failsafeState.phase = FAILSAFE_CONTINUE_FLYING;
+                            break;
+
                         case FAILSAFE_PROCEDURE_AUTO_LANDING:
                             //  Enter Stage 2 with settings for landing mode
                             ENABLE_FLIGHT_MODE(FAILSAFE_MODE);

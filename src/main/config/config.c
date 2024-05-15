@@ -371,6 +371,12 @@ static void validateAndFixConfig(void)
         }
 #endif
 
+#ifdef USE_FAILSAFE_CONTINUE_FLYING
+        if (failsafeConfig()->failsafe_procedure == FAILSAFE_PROCEDURE_CONTINUE_FLYING) {
+            failsafeConfigMutable()->failsafe_procedure = FAILSAFE_PROCEDURE_CONTINUE_FLYING;
+        }
+#endif
+
         if (isModeActivationConditionPresent(BOXGPSRESCUE)) {
             removeModeActivationCondition(BOXGPSRESCUE);
         }

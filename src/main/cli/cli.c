@@ -241,8 +241,8 @@ static const char * const featureNames[] = {
 static const char rxFailsafeModeCharacters[] = "ahs";
 
 static const rxFailsafeChannelMode_e rxFailsafeModesTable[RX_FAILSAFE_TYPE_COUNT][RX_FAILSAFE_MODE_COUNT] = {
-    { RX_FAILSAFE_MODE_AUTO, RX_FAILSAFE_MODE_HOLD, RX_FAILSAFE_MODE_SET },
-    { RX_FAILSAFE_MODE_INVALID, RX_FAILSAFE_MODE_HOLD, RX_FAILSAFE_MODE_SET }
+    { RX_FAILSAFE_MODE_AUTO, RX_FAILSAFE_MODE_SET, RX_FAILSAFE_MODE_HOLD },
+    { RX_FAILSAFE_MODE_INVALID, RX_FAILSAFE_MODE_SET, RX_FAILSAFE_MODE_HOLD }
 };
 
 #if defined(USE_SENSOR_NAMES)

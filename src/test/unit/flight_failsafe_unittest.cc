@@ -85,7 +85,7 @@ void configureFailsafe(void)
     failsafeConfigMutable()->failsafe_switch_mode = FAILSAFE_SWITCH_MODE_STAGE1;
     failsafeConfigMutable()->failsafe_throttle = 1200;
     failsafeConfigMutable()->failsafe_throttle_low_delay = 100; // 10 seconds
-    failsafeConfigMutable()->failsafe_procedure = FAILSAFE_PROCEDURE_AUTO_LANDING;
+    failsafeConfigMutable()->failsafe_procedure = FAILSAFE_PROCEDURE_CONTINUE_FLYING;
     // NB we don't have failsafe_recovery_delay so use PERIOD_RXDATA_RECOVERY (100ms)
     sysTickUptime = 0;
 }
@@ -546,7 +546,7 @@ TEST(FlightFailsafeTest, TestFailsafeSwitchModeStage2Land)
     // and
     throttleStatus = THROTTLE_HIGH;                 // throttle HIGH to go for a failsafe landing procedure
     failsafeConfigMutable()->failsafe_switch_mode = FAILSAFE_SWITCH_MODE_STAGE2;
-    failsafeConfigMutable()->failsafe_procedure = FAILSAFE_PROCEDURE_AUTO_LANDING;
+    failsafeConfigMutable()->failsafe_procedure = FAILSAFE_PROCEDURE_CONTINUE_FLYING;
 
     sysTickUptime = 0;                              // restart time from 0
     failsafeOnValidDataReceived();                  // we have a valid signal
